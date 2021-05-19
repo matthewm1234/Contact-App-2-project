@@ -2,6 +2,7 @@ package com.example.contactlist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.contactlist.databinding.ContactListItemBinding
 

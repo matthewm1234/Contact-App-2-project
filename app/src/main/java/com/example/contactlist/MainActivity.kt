@@ -6,8 +6,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
+import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toolbar
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.contactlist.databinding.ActivityMainBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -19,14 +22,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
+        setSupportActionBar(binding.appBar)
         setupData(binding)
     }
     private fun setupData (binding: ActivityMainBinding){
-
+        var appBarTitle = intent.getStringExtra(CategoryAdapter.Category)
+        supportActionBar ?.title = appBarTitle
+        binding.appBar.title = appBarTitle
         binding.contactRv.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = myAdapter
+            addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
         }
+
         val builder = AlertDialog.Builder(this)
         val view = layoutInflater.inflate(R.layout.add_contact_dialog,null)
         builder.setView(view)
